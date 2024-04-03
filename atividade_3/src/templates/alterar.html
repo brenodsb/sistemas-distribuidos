@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h2>{% block titulo %} Alterar "{{ produto['descricao'] }}" {% endblock %}</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" name="descricao"
+               placeholder="Descrição produto" class="form-control"
+               value="{{ request.form['descricao'] or produto['descricao']}}" required>
+    </div>
+
+     <div class="form-group">
+        <label>Preço</label>
+        <input type="number" step=".01" name="preco"
+               placeholder="Preço produto" class="form-control"
+               value="{{ request.form['preco'] or produto['preco'] }}" required>
+    </div>
+
+    <div class="form-group">
+         <label>Quantidade</label>
+         <input type="number" name="qtd"
+               placeholder="Quantidade" class="form-control"
+               value="{{ request.form['qtd'] or produto['qtd'] }}" required>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+<hr>
+<form action="{{ url_for('excluir', id_produto=produto['id_produto']) }}" method="POST">
+    <input type="submit" value="Excluir Produto"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Deseja mesmo excluir o produto?')">
+</form>
+{% endblock %}

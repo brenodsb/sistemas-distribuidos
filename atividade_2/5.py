@@ -7,7 +7,7 @@ def request():
     return resposta
 
 def insert(data, dolar, euro):
-    conn = sqlite3.connect('bdcotacoes.db')
+    conn = sqlite3.connect('atividade_2/bdcotacoes.db')
     cursor = conn.cursor()
     try:
         sql = "INSERT INTO moedas (data, dolar, euro) VALUES (?, ?, ?)"

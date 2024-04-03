@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h2>{% block titulo %} Produtos {% endblock %}</h2>
+        {% if registros['mensagem'] == 'registro nao encontrado' %}
+            <h2>Ainda não existem produtos cadastrados.</h2>
+        {% else %}
+            {% for registro in registros %}
+            <a href="{{ url_for('pesquisar', id_produto=registro['id_produto']) }}">
+                <h4>{{ registro['descricao'] }}: R$ {{ registro['preco'] }}</h4>
+            </a>
+            <span class="badge badge-success">Últ.Atualiz.: {{ registro['atualizado_em'] }}</span>
+            <a href="{{ url_for('alterar', id_produto=registro['id_produto']) }}">
+                <span class="badge badge-warning">Edit</span>
+            </a>
+            <hr>
+             {% endfor %}
+
+        {% endif %}
+{% endblock %}

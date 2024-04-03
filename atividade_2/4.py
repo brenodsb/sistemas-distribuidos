@@ -1,7 +1,7 @@
 import requests
 import sqlite3
 
-conn = sqlite3.connect('bdcotacoes.db')
+conn = sqlite3.connect('atividade_2/bdcotacoes.db')
 cursor = conn.cursor()
 
 url = 'https://api.hgbrasil.com/finance?format=json-cors&key=21ae8ecf'

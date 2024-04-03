@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h2>{% block titulo %} {{ produto['descricao'] }} {% endblock %}</h2>
+    <hr>
+    <h4>Id: {{ produto['id_produto'] }} </h4>
+    <h4>Descrição: {{ produto['descricao'] }} </h4>
+    <h4>Preço: R$ {{ produto['preco'] }} </h4>
+    <h4>Estoque: {{ produto['qtd'] }} unid.</h4>
+    <hr>
+    <p>
+        <span>Data de criação: {{ produto['criado_em'] }} </span> -
+        <span> Última atualização: {{ produto['atualizado_em'] }}</span>
+    </p>
+{% endblock %}
