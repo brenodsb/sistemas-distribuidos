@@ -1,7 +1,7 @@
 import json
 import requests
 
-dado = {'descricao':'teste',
+dado = {'descricao':'seila',
         'ganhopercentual': 1.0}
 
 dado_json = json.dumps(dado)

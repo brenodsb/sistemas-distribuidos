@@ -33,7 +33,7 @@ def pesquisar(idproduto=None):
                 return jsonify(json_dados)
             else:
                 return jsonify({'mensagem': 'registro nao encontrado'})
-            
+
         except Error as e:
             return jsonify({'mensagem': f'erro: {e}'})
         finally:
@@ -64,18 +64,18 @@ def inserir():
 
                 print("PASSOU AQUI")
                 return jsonify({'mensagem': 'registro inserido com sucesso'})
-            
+
             except Error as e:
                 return jsonify({'mensagem': f'erro: {e}'})
             finally:
                 conn.close()
         else:
             return jsonify({'mensagem': 'campos <descicao> e <ganhopercentual> sao obrigatorios'})
-        
+
 # DELETE: Excluir
 @app.route('/api-loja/excluir/<int:idproduto>', methods=['DELETE'])
 
-def excluir(idexproduto=None):
+def excluir(idproduto=None):
     if idproduto == None:
         return jsonify({'mensagem': 'parametro invalido'})
     else:
@@ -118,14 +118,14 @@ def alterar():
                 conn.commit()
 
                 return jsonify({'mensagem': 'registro alterado com sucesso'})
-            
+
             except Error as e:
                 return jsonify({'mensagem': f'erro: {e}'})
             finally:
                 conn.close()
         else:
             return jsonify({'mensagem': 'campos <idproduto>, <descicao> e <ganhopercentual> sao obrigatorios'})
-        
+
 # UrlPoint nao localizado
 @app.errorhandler(404)
 

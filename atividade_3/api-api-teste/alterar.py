@@ -3,7 +3,7 @@ import requests
 
 dado = {'idproduto': 1,
         'descricao':'agua mineral com gas',
-        'ganhopercentual': 0.17}
+        'ganhopercentual': 0.20}
 
 dado_json = json.dumps(dado)
 
