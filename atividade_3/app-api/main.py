@@ -40,7 +40,7 @@ def pesquisar(idproduto=None):
             conn.close()
 
 # POST: Inserir
-@app.route('/api-loja/inserir', methods=['POST'])
+@app.route('/api-loja/inserir', methods=['POST']) # type: ignore
 
 def inserir():
     if request.method == 'POST':
@@ -95,7 +95,7 @@ def excluir(idproduto=None):
             conn.close()
 
 # PUT: Alterar
-@app.route('/api-loja/alterar/', methods=['PUT'])
+@app.route('/api-loja/alterar/', methods=['PUT']) # type: ignore
 
 def alterar():
     if request.method == 'PUT':
