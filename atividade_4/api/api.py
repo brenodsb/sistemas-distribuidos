@@ -54,6 +54,61 @@ def listar():
     finally:
         conn.close()
 #######################################################
+# 3. Excluir produtos
+@app.route('/produtos/excluir/<int:idproduto>', methods=['DELETE'])
+
+def excluir(idproduto=None):
+    if idproduto == None:
+        return jsonify({'mensagem': 'parametro invalido'})
+    else:
+        try:
+            conn = sqlite3.connect('./atividade_4/db/db-produtos.db')
+
+            sql = '''DELETE FROM produtos WHERE idproduto = ''' + str(idproduto)
+
+            cur = conn.cursor()
+            cur.execute(sql)
+            conn.commit()
+
+            return jsonify({'mensagem': 'registro excluido'})
+        except Error as e:
+            return jsonify({'mensagem': f'erro: {e}'})
+        finally:
+            conn.close()
+#######################################################
+# 4. Alterar produtos
+@app.route('/produtos/alterar/', methods=['PUT']) # type: ignore
+
+def alterar():
+    if request.method == 'PUT':
+        dados = request.get_json()
+
+        idproduto = dados['idproduto']
+        descricao = dados['descricao']
+        precocompra = dados['precocompra']
+        precovenda = dados['precovenda']
+
+        if idproduto and descricao and precocompra and precovenda:
+            registro = (descricao, precocompra, precovenda, idproduto)
+
+            try:
+                conn = sqlite3.connect('./atividade_4/db/db-produtos.db')
+
+                sql = '''UPDATE produtos SET descricao = ?, precocompra = ?, precovenda = ? WHERE idproduto = ?'''
+
+                cur = conn.cursor()
+                cur.execute(sql, registro)
+                conn.commit()
+
+                return jsonify({'mensagem': 'registro alterado com sucesso'})
+
+            except Error as e:
+                return jsonify({'mensagem': f'erro: {e}'})
+            finally:
+                conn.close()
+        else:
+            return jsonify({'mensagem': 'campos <idproduto>, <descricao>, <precocompra> e <precovenda> sao obrigatorios'})
+#######################################################
 # Rota de Erro
 @app.errorhandler(404)
 def pagina_nao_encontrada(e):
